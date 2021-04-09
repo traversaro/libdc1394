@@ -106,6 +106,8 @@ dc1394_juju_capture_setup(platform_camera_t *craw, uint32_t num_dma_buffers,
         uint32_t flags)
 {
     struct fw_cdev_create_iso_context create;
+    // Make sure that create does not contain not initialized memory
+    memset(&create, 0, sizeof(struct fw_cdev_create_iso_context));
     struct fw_cdev_start_iso start_iso;
     dc1394error_t err;
     dc1394video_frame_t proto;
